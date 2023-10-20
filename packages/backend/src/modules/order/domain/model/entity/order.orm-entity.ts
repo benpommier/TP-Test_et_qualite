@@ -20,4 +20,14 @@ export default class Order {
 
   @Column({ name: 'products', type: 'json', nullable: true })
   products: string[];
+
+  async pay(): Promise<void> {
+    this.status = OrderStatusEnum.Paid;
+    this.updatedAt = new Date();
+  }
+  
+  async cancel(): Promise<void> {
+    this.status = OrderStatusEnum.Canceled;
+    this.updatedAt = new Date();
+  }
 }
